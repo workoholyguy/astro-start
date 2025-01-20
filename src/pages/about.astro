@@ -1,66 +1,100 @@
 ---
-const pageTitle = 'About Me'
+// import Navigation from '../components/Navigation.astro'
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "About Me";
 
 const identity = {
-	firstName: 'Omar', 
-	country: 'Uzbekistan', 
-	occupation: 'Technical Writer',
-	hobbies:['photography', 'birdwatching', 'baseball']
-}
+  firstName: "Omar",
+  country: "Uzbekistan",
+  occupation: "Technical Writer",
+  hobbies: ["photography", "birdwatching", "baseball"],
+};
 
-const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Writing Docs']
+const skills = ["HTML", "CSS", "JavaScript", "React", "Writing Docs"];
 
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "lowercase";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<header>
-		<a href="/">Home</a>
-		<a href="/about/">About</a>
-		<a href="/blog/">Blog</a>
-	</header>
-	<body>
-		
-		<h1>{pageTitle}</h1>
-		<h2>... and my new Atro site!</h2>
-		<p>I'm working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
-		<p>This site will update as I complete mroe of the tutorial, so keep checking back and see how my journey is going!</p>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        /* font-size: 4rem; */
+      }
+      .skill {
+        /* color: green; */
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
+  </head>
 
-		<p>Here Are a few Facts about me:</p>
-		<ul>
-			<li>My name is {identity.firstName}</li>
-			<li>I live in {identity.country} and work as a {identity.occupation}.</li>
-			{identity.hobbies.length >= 2 && 
-			<li>Two of my hobbies are: identity.hobbies[0] and {identity.hobbies[1]}</li>
-			}
-		</ul>
+  <body>
+    <!-- <Navigation/> -->
+    <BaseLayout pageTitle={pageTitle}>
+      <!-- <h1>{pageTitle}</h1> -->
+      <h2>... and my new Atro site!</h2>
+      <p>
+        I'm working through Astro's introductory tutorial. This is the second
+        page on my website, and it's the first one I built myself!
+      </p>
+      <p>
+        This site will update as I complete mroe of the tutorial, so keep
+        checking back and see how my journey is going!
+      </p>
 
-		<p>My Skills are:</p>
-		<ul>
-			{skills.map((skill) => (
-				<li>{skill}</li>
-			))}
-		</ul>
+      <p>Here Are a few Facts about me:</p>
+      <ul>
+        <li>My name is {identity.firstName}</li>
+        <li>
+          I live in {identity.country} and work as a {identity.occupation}.
+        </li>
+        {
+          identity.hobbies.length >= 2 && (
+            <li>
+              Two of my hobbies are: {identity.hobbies[0]} and{" "}
+              {identity.hobbies[1]}
+            </li>
+          )
+        }
+      </ul>
 
-		{ happy && 
-		<p>I'm happy to be learning Astro !</p>
-		}
+      <p>My Skills are:</p>
+      <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+      </ul>
 
-		{finished && 
-		<p>I finished this tutorial </p>
-		}
+      {happy && <p>I'm happy to be learning Astro !</p>}
 
-		{
-			goal === 3 ? <p>My goal is to finish in 3 days</p> : <p>My goal is not 3 days</p>
-		}
-	</body>
+      {finished && <p>I finished this tutorial </p>}
+
+      {
+        goal === 3 ? (
+          <p>My goal is to finish in 3 days</p>
+        ) : (
+          <p>My goal is not 3 days</p>
+        )
+      }
+    </BaseLayout>
+    <script>
+      import "../scripts/menu.js";
+    </script>
+  </body>
 </html>
