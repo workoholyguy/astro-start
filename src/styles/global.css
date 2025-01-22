@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  /* border: 1px navy solid;
-  margin: 0.2rem; */
+  border: 1px navy solid;
+  margin: 0.2rem;
 }
 html {
   background-color: #f1f5f9;
