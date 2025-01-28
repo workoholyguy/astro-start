@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+// Importing functions to fetch and render content from the Astro content collection.
+import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
+// Importing the layout component to structure the blog post page.
+
+export async function getStaticPaths() {
+  // This function generates the paths for all blog posts.
+  const posts = await getCollection("blog");
+  // Fetches all posts from the "blog" collection.
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    // Sets the URL parameter for each post using the post ID.
+    props: { post },
+    // Passes the post data as props to the page.
+  }));
+  // This ensures that each post has a unique URL and the necessary data is available for rendering.
+}
+
+const { post } = Astro.props;
+// Extracts the post data from the props passed to the page.
+
+const { Content } = await render(post);
+// Processes the post content and returns an object with a Content component.
+// This allows Astro to process the Markdown content and convert it into a format that can be displayed on the page.
+---
+
+<MarkdownPostLayout frontmatter={post.data}>
+  <!-- // Uses the MarkdownPostLayout component to structure the page.  -->
+  <!-- // The  frontmatter prop contains metadata like title, author, and date. -->
+  <Content />
+  <!-- // Renders the actual content of the blog post. 
+  // This separation of layout and  content ensures that the blog posts are displayed consistently and can be easily  styled or modified. -->
+</MarkdownPostLayout>
