@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Greeting from "../components/Greeting";
+import { ContactForm } from "../components/ContactForm";
+
 const pageTitle = "Home Page";
 ---
 
@@ -8,4 +10,5 @@ const pageTitle = "Home Page";
   <h2>My Awesome blog subtitle</h2>
   <!-- <Greeting client:load message={["Hi", "Hello", "Howdy", "Hey there"]} /> -->
   <Greeting client:load message={["Hej", "Hallo", "Hola", "Habari"]} />
+  <ContactForm client:load />
 </BaseLayout>
