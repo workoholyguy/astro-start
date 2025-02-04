@@ -1,14 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Greeting from "../components/Greeting";
-import { ContactForm } from "../components/ContactForm";
-
+import { ContactForm } from "../components/ContactForm.jsx";
 const pageTitle = "Home Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <h2>My Awesome blog subtitle</h2>
-  <!-- <Greeting client:load message={["Hi", "Hello", "Howdy", "Hey there"]} /> -->
   <Greeting client:load message={["Hej", "Hallo", "Hola", "Habari"]} />
-  <ContactForm client:load />
+
+  <section class="my-12">
+    <ContactForm client:load redirectUrl="/" />
+  </section>
 </BaseLayout>

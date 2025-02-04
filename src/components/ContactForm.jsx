@@ -1,5 +1,4 @@
 import { useState } from "preact/hooks";
-// import { GradientText } from "astro-boilerplate-components";
 
 const ContactForm = ({ redirectUrl = "/" }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,17 +13,14 @@ const ContactForm = ({ redirectUrl = "/" }) => {
       const form = e.target;
       const formData = new FormData(form);
 
-      const response = await fetch("https://formsubmit.co/el/kiyiwe", {
+      const response = await fetch("https://usebasin.com/f/d1d16600ca96", {
         method: "POST",
         body: formData,
         mode: "no-cors",
       });
 
-      if (response.ok) {
-        window.location.href = redirectUrl;
-      } else {
-        throw new Error("Failed to send message");
-      }
+      // With no-cors mode, we rely on successful request completion
+      window.location.href = redirectUrl;
     } catch (error) {
       setErr("Failed to send message. Please try again");
     } finally {
@@ -34,7 +30,7 @@ const ContactForm = ({ redirectUrl = "/" }) => {
 
   return (
     <form
-      action="https://formsubmit.co/el/kiyiwe"
+      action="https://usebasin.com/f/d1d16600ca96"
       method="POST"
       target="_blank"
       onSubmit={handleSubmit}
@@ -87,8 +83,8 @@ const ContactForm = ({ redirectUrl = "/" }) => {
           id="phone"
           name="phone"
           required
-          className="mt-1 block w-full rounded-md border-gray-300 text-black shadow-sm"
           placeholder="(123) 456-7890"
+          className="mt-1 block w-full rounded-md border-gray-300 text-black shadow-sm"
         />
       </div>
 
