@@ -17,6 +17,7 @@ const ContactForm = ({ redirectUrl = "/" }) => {
       const response = await fetch("https://formsubmit.co/el/kiyiwe", {
         method: "POST",
         body: formData,
+        mode: "no-cors",
       });
 
       if (response.ok) {
